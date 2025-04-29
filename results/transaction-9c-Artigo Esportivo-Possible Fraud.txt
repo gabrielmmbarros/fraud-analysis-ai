@@ -1,0 +1,21 @@
+### Recommendation for Transaction ID: "9c"
+
+#### Recommendation:
+**1. Engage Anti-Fraud Team:**  
+Due to the system's classification of the transaction as "Possible Fraud" based on the unusually high amount ($1103.00) for a sporting item and the deviation from typical spending patterns, escalate this matter to the Anti-Fraud Team for immediate investigation. The team should analyze the details, transaction history, and any associated behavioral anomalies.
+
+**2. Perform Manual Verification:**  
+Simultaneously, a manual review of the transaction should be performed to cross-check the merchant, purchase details, and cardholder's spending trends. Verify if there are any prior transactions consistent with purchases from "Esporte C" or for similar high-value sporting goods.
+
+**3. Notify Customer:**  
+Once initial investigations are underway, notify the customer to verify the legitimacy of the transaction. Provide a secure channel for the customer to confirm or dispute the purchase. This step is critical to mitigate potential unauthorized charges or fraudulent account activity.
+
+#### Classification of Fraud:
+**Potential Type:**  
+The fraud indicators suggest possible **Card-Not-Present Fraud** or **Account Takeover Fraud**. This is inferred from the following factors:
+- Large transaction amount atypical for the account.
+- High-value purchase for a potentially discretionary item.
+- Location-specific anomaly (if this is inconsistent with prior spending behavior in Porto Alegre).
+
+#### Conclusion:
+Immediate action combining anti-fraud team escalation, transaction review, and customer notification is necessary to address the potential fraudulent activity effectively and safeguard customer assets.

@@ -26,7 +26,7 @@ def load_file(file_name):
 
 
 # Function to save analysis results to a file
-def save_review(file_name, content):
+def save_result(file_name, content):
     try:
         with open(file_name, "w", encoding="utf-8") as file:
             file.write(content)
@@ -54,12 +54,12 @@ def analyze_transaction(transaction_list):
         "transactions": [
             {
             "Id": "id",
-            "tipo": "credit or debit",
-            "estabelecimento": "merchant name",
-            "horario": "transaction time",
-            "valor": "$XX.XX",
-            "nome_produto": "product name",
-            "localizacao": "city - state (Country)"
+            "type": "credit or debit",
+            "merchant": "merchant name",
+            "time": "transaction time",
+            "amount": "$XX.XX",
+            "product_name": "product name",
+            "location": "city - state (Country)"
             "status": ""
             },
         ]
@@ -132,6 +132,35 @@ def generate_report(transaction):
     print("Report generation completed")
     return content
 
+# Function that generates an actionable recommendation for each analysis
+def generate_actionable_recommendation(report):
+    print("3. Generating recommendations")
+        
+    system_prompt = f"""
+    For the following transaction, provide an appropriate recommendation based on the status and details of the transaction: {report}
+
+    The recommendations can be "Notify Customer", "Engage Anti-Fraud Team", or "Perform Manual Verification".
+    They should be written in a technical format.
+
+    Also include a classification of the type of fraud, if applicable. 
+    """
+
+    message_list = [
+        {
+            "role": "system",
+            "content": system_prompt
+        }
+    ]
+
+    response = openai.chat.completions.create(
+        messages = message_list,
+        model = model,
+    )
+
+    content = response.choices[0].message.content
+    print("Finished generating recommendation")
+    return content
+
 
 # Load transaction data from CSV file
 data = load_file("database/transactions.csv")
@@ -141,4 +170,11 @@ transactions = analyze_transaction(data)
 for t in transactions["transactions"]: 
     if t["status"] == "Possible Fraud": 
         report = generate_report(t)
-        print(report)
+        act_recommendation = generate_actionable_recommendation(report)
+
+        transaction_id = t["Id"]
+        transaction_product = t["product_name"] 
+        transaction_status = t["status"]
+        
+        # creating actionable recommendation file
+        save_result(f"results/transaction-{transaction_id}-{transaction_product}-{transaction_status}.txt", act_recommendation)
