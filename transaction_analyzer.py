@@ -8,7 +8,7 @@ import json
 load_dotenv()
 
 # Configure the OpenAI API with Azure credentials from environment variables
-openai.api_type = os.getenv("AZURE_OPENAI_API_KEY")
+openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
 openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
 openai.api_version = os.getenv("AZURE_OPENAI_API_VERSION")
 openai.api_type = os.getenv("AZURE_OPENAI_API_TYPE")
